@@ -1020,7 +1020,7 @@ Parser::ParseExternalDeclaration(ParsedAttributes &Attrs,
   default:
   dont_know:
     if (Tok.isEditorPlaceholder()) {
-      ConsumeToken();
+      ConsumeAnyToken();
       return nullptr;
     }
     if (getLangOpts().IncrementalExtensions &&

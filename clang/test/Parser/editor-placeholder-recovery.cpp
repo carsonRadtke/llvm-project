@@ -73,3 +73,18 @@ void Struct::method(<#Struct &x#>, noSupressionHere) { // expected-error {{unkno
 void handleTrigraph() {
   <??=placeholder#> // expected-error {{expected expression}} expected-error {{expected expression}} expected-warning {{trigraph converted to '#' character}}
 }
+
+// GH168517: Verify editor placeholders in top-level declarations are handled properly
+namespace GH168517 {
+  class A {};
+  struct <#struct name#> {};
+#ifndef SUPPRESS
+  // expected-error@-2 {{editor placeholder in source file}}
+#endif
+  A a_<#struct name#> = A{<#struct name#>{}};
+  // expected-error@-1 {{expected ';' after top level declarator}}
+  // expected-error@-2 {{expected unqualified-id}}
+#ifndef SUPPRESS
+  // expected-error@-4 2 {{editor placeholder in source file}}
+#endif
+}

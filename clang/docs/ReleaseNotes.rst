@@ -491,6 +491,7 @@ Bug Fixes in This Version
 - Accept empty enumerations in MSVC-compatible C mode. (#GH114402)
 - Fix a bug leading to incorrect code generation with complex number compound assignment and bitfield values, which also caused a crash with UBsan. (#GH166798)
 - Fixed false-positive shadow diagnostics for lambdas in explicit object member functions. (#GH163731)
+- Fixed an assertion failure when parsing editor placeholders in certain top-level declaration contexts. (#GH168517)
 
 Bug Fixes to Compiler Builtins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
