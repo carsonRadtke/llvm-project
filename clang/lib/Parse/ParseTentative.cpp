@@ -200,6 +200,9 @@ Parser::TPResult Parser::TryConsumeDeclarationSpecifier() {
 
   case tok::annot_cxxscope:
     ConsumeAnnotationToken();
+    if (Tok.is(tok::eof))
+      // Do not consume past end-of-file; there is no lexer.
+      return TPResult::Error;
     [[fallthrough]];
   default:
     ConsumeAnyToken();
